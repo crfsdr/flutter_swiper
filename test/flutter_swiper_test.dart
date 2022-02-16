@@ -70,11 +70,7 @@ void main() {
     expect(find.text("0", skipOffstage: false), findsOneWidget);
   });
 
-  const List<String> titles = [
-    "Flutter Swiper is awosome",
-    "Really nice",
-    "Yeap"
-  ];
+  const List<String> titles = ["Flutter Swiper is awosome", "Really nice", "Yeap"];
 
   testWidgets('Customize pagination', (WidgetTester tester) async {
     // Build our app and trigger a frame.
@@ -86,23 +82,19 @@ void main() {
         return Text("0");
       },
       itemCount: 10,
-      pagination: SwiperCustomPagination(
-          builder: (BuildContext context, SwiperPluginConfig config) {
+      pagination: SwiperCustomPagination(builder: (BuildContext context, SwiperPluginConfig? config) {
         return ConstrainedBox(
           child: Row(
             children: <Widget>[
               Text(
-                "${titles[config.activeIndex]} ${config.activeIndex + 1}/${config.itemCount}",
+                "${titles[config!.activeIndex!]} ${config.activeIndex! + 1}/${config.itemCount}",
                 style: TextStyle(fontSize: 20.0),
               ),
               Expanded(
                 child: Align(
                   alignment: Alignment.centerRight,
                   child: DotSwiperPaginationBuilder(
-                          color: Colors.black12,
-                          activeColor: Colors.black,
-                          size: 10.0,
-                          activeSize: 20.0)
+                          color: Colors.black12, activeColor: Colors.black, size: 10.0, activeSize: 20.0)
                       .build(context, config),
                 ),
               )
